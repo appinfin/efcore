@@ -749,8 +749,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Abs(od.ProductID) > 10),
-                entryCount: 1939);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.UnitPrice < 7)
+                    .Where(od => Math.Abs(od.ProductID) > 10),
+                entryCount: 154);
         }
 
         [ConditionalTheory]
@@ -759,8 +761,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Abs(od.Quantity) > 10),
-                entryCount: 1547);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.UnitPrice < 7)
+                    .Where(od => Math.Abs(od.Quantity) > 10),
+                entryCount: 102);
         }
 
         [ConditionalTheory]
@@ -769,8 +773,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Abs(od.UnitPrice) > 10),
-                entryCount: 1677);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.Quantity < 5)
+                    .Where(od => Math.Abs(od.UnitPrice) > 10),
+                entryCount: 137);
         }
 
         [ConditionalTheory]
@@ -779,8 +785,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Abs(-10) < od.ProductID),
-                entryCount: 1939);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.UnitPrice < 7)
+                    .Where(od => Math.Abs(-10) < od.ProductID),
+                entryCount: 154);
         }
 
         [ConditionalTheory]
@@ -789,8 +797,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Ceiling(od.Discount) > 0),
-                entryCount: 838);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.UnitPrice < 7)
+                    .Where(od => Math.Ceiling(od.Discount) > 0),
+                entryCount: 51);
         }
 
         [ConditionalTheory]
@@ -799,8 +809,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Ceiling(od.UnitPrice) > 10),
-                entryCount: 1677);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.Quantity < 5)
+                    .Where(od => Math.Ceiling(od.UnitPrice) > 10),
+                entryCount: 137);
         }
 
         [ConditionalTheory]
@@ -809,8 +821,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Floor(od.UnitPrice) > 10),
-                entryCount: 1658);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.Quantity < 5)
+                    .Where(od => Math.Floor(od.UnitPrice) > 10),
+                entryCount: 137);
         }
 
         [ConditionalTheory]
@@ -829,8 +843,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Round(od.UnitPrice) > 10),
-                entryCount: 1662);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.Quantity < 5)
+                    .Where(od => Math.Round(od.UnitPrice) > 10),
+                entryCount: 137);
         }
 
         [ConditionalTheory]
@@ -873,8 +889,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Math.Truncate(od.UnitPrice) > 10),
-                entryCount: 1658);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.Quantity < 5)
+                    .Where(od => Math.Truncate(od.UnitPrice) > 10),
+                entryCount: 137);
         }
 
         [ConditionalTheory]
@@ -1034,8 +1052,10 @@ namespace Microsoft.EntityFrameworkCore.Query
         {
             return AssertQuery(
                 async,
-                ss => ss.Set<OrderDetail>().Where(od => Guid.NewGuid() != default),
-                entryCount: 2155);
+                ss => ss.Set<OrderDetail>()
+                    .Where(od => od.OrderID % 23 == 17)
+                    .Where(od => Guid.NewGuid() != default),
+                entryCount: 88);
         }
 
         [ConditionalTheory]
