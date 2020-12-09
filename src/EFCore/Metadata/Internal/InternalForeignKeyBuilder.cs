@@ -1746,8 +1746,8 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Internal
                     propertyNames,
                     configurationSource,
                     Metadata.PrincipalKey.Properties,
-                    Metadata.GetIsRequiredConfigurationSource() != null && Metadata.IsRequired,
-                    Metadata.GetPrincipalKeyConfigurationSource() == null
+                    required: Metadata.GetIsRequiredConfigurationSource() != null && Metadata.IsRequired,
+                    useDefaultType: Metadata.GetPrincipalKeyConfigurationSource() == null
                     && Metadata.PrincipalEntityType.FindPrimaryKey() == null),
                 dependentEntityType,
                 configurationSource);
